@@ -1,0 +1,12 @@
+{{poll-progress-bar}}
+<div class="poll-toolbar">
+	<ul class="poll-sections">
+		{{#each sectionIds as |sectionId|}}
+			<li> {{#link-to "polls.sections" sectionId}} {{sectionId}}{{/link-to}}</li>
+		{{/each}}
+	</ul>
+</div>
+
+<div class="container">
+	{{outlet}}
+</div>

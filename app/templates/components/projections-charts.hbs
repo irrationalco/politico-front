@@ -1,0 +1,34 @@
+<div id="charts-panel" class="projections-sidebar">
+  <div class="top">
+    <div class="toggle-button fa fa-bars" {{action "toggle"}}/>
+    <div class="settings-button fa fa-cog" {{action "settings"}}/>
+  </div>
+  <div id="settings-panel" style="display: none;">
+    <p class="chart-title">Porcentaje mínimo</p>
+    {{ui-slider value=minimumPercentage min=0 max=20 ticks='0,20' changed='minPercentageChanged'}}
+    <div class="min-max">
+      <p class="min">0%</p>
+      <p class="max">20%</p>
+    </div>
+  </div>
+  {{#if isOpen}}
+    {{#if presidentChart}}
+      <p class="chart-title">Elecciones Presidenciales</p>
+      {{#if isStatic}}
+        {{ember-chart type=presidentChartType data=presidentChart width=200 height=350}}
+      {{/if}}
+    {{/if}}
+    {{#if senatorsChart}}
+      <p class="chart-title">Elecciones para Senadores</p>
+      {{#if isStatic}}
+        {{ember-chart type=senatorsChartType data=senatorsChart width=200 height=350}}
+      {{/if}}
+    {{/if}}
+    {{#if deputiesChart}}
+      <p class="chart-title">Elecciones para Diputados Federales</p>
+      {{#if isStatic}}
+        {{ember-chart type=deputiesChartType data=deputiesChart width=200 height=350}}
+      {{/if}}
+    {{/if}}
+  {{/if}}
+</div>

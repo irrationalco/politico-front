@@ -1,0 +1,96 @@
+.selectize-control .selectize-input
+	padding: 0 !important
+
+.selectize-dropdown
+	text-transform: uppercase !important
+	border: 1px solid $lightgray !important
+	border-radius: 0 !important
+	box-shadow: none !important
+
+.selectize-dropdown-content
+	max-height: 100px !important
+
+.selectize-input
+	border: 0 !important
+	background: transparent !important
+	box-shadow: none !important
+
+.selectize-control .selectize-input
+	div
+		font-size: 10px !important
+		text-transform: uppercase !important
+		border-radius: 4px !important
+		cursor: pointer !important
+		margin: 0 !important
+		background: $primary !important
+		color: $white !important
+		padding: 6px 8px !important
+		box-shadow: none !important
+		text-shadow: none !important
+
+.selectize-input:after
+	border-color: $white transparent transparent transparent !important
+
+.dropdown-active:after
+	border-color: transparent transparent $white transparent !important
+
+.selectize-control.multi .selectize-input
+	div
+		border-radius: 4px !important
+		cursor: pointer !important
+		margin: 0 6px 6px 0 !important
+		background: $primary !important
+		border: 1px solid transparent !important
+		color: $white !important
+		padding: 4px 16px 4px 4px !important
+		a
+			border-left: none !important
+		a:hover
+			background-color: transparent !important
+
+.selectize-input
+	input
+		display: none !important
+		margin: 0 !important
+		padding: 0px !important
+		width: 100% !important
+
+.selectize-control.multi .selectize-input.has-items
+	cursor: initial !important
+
+.active
+	background-color: $lightgray !important
+	color: $darkblue !important
+
+.input-active
+	cursor: pointer !important
+
+.option
+	font-size: 10px !important
+
+.remove
+	font-size: 10px !important
+	padding: 4px 0 0 0 !important
+
+// Sowwy
+
+#select-party
+	input
+		display: initial !important
+		padding: 6px 8px !important
+
+#select-party .input-active
+	cursor: pointer !important
+
+#select-party .selectize-input
+	input
+		background-color: white !important
+
+#select-party .selectize-input input
+	border: 1px solid $lightgray !important
+	border-radius: 0 !important
+	margin-bottom: 1px !important
+	z-index: 1000 !important
+
+#select-party .selectize-input input input::-webkit-input-placeholder
+	color: $black !important

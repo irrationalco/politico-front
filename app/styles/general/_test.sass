@@ -1,0 +1,342 @@
+// Map
+.card
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)
+  background: white
+  
+.map-background
+  fill: none
+  pointer-events: all
+
+.section
+  opacity: .6
+  stroke: transparent
+  stroke-opacity: 0.3
+  stroke-linejoin: round
+  &:hover
+    stroke: white !important
+    stroke-opacity: 1
+
+.feature
+  fill: transparent
+  stroke: #a2a5a7
+  stroke-linejoin: round
+  &:hover
+    fill: #a2a5a7
+    stroke: white
+    opacity: .2
+
+.municipality 
+  fill: #009688
+  opacity: 0
+  cursor: pointer
+  &:hover
+    opacity: .4
+
+.municipality.active
+  fill: #009688
+  opacity: .6
+
+.mesh
+  fill: none
+  opacity: 1
+  stroke: #a2a5a7
+  stroke-linecap: round
+  stroke-linejoin: round
+
+#map-world
+  height: 700px
+  width: 700px
+
+#map
+  height: 100%
+  width: 100%
+  position: fixed
+  padding-left: 225px
+  padding-top: 60px
+
+.svg-map
+  position: absolute
+
+#tiles
+  height: 100%
+  width: 100%
+  position: fixed
+  padding-left: 225px
+
+.country
+  fill-opacity: 1
+  fill: #4682B4
+  stroke-opacity: 1
+  stroke: black
+  stroke-width: 2px
+
+.states :hover
+  fill: red
+
+.state-borders
+  fill: none
+  stroke: #fff
+  stroke-width: 0.5px
+  stroke-linejoin: round
+  stroke-linecap: round
+  pointer-events: none
+
+// Tooltips
+#tooltip-map
+  position: absolute
+  z-index: 999
+  background: white
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important
+  display: none
+  pointer-events: none
+  width: 250px
+  margin-top: -70px
+  padding: 10px
+
+.tooltip-header
+  margin-bottom: 25px
+  text-transform: capitalize
+  text-align: center
+  font-weight: 600
+
+.tooltip-row
+  margin: 4px 0
+
+.tooltip-color-box
+  width: 9px
+  height: 9px
+  margin: 2px 8px 0 0
+  float: left
+  background: grey
+  display: block
+
+.tooltip-votes
+  margin-left: 20px
+
+.tooltip-votes-pan
+  margin-left: 16px
+
+.tooltip-percent
+  float: right
+
+.tooltip-party
+  width: 10px
+
+.tooltip-pct
+  color: black
+  font-weight: 600
+
+.tooltip-total
+  text-align: center !important
+  font-weight: 600
+
+// Voter table
+.voter-table
+  tr
+    td
+      padding: 5px !important
+
+.voter-table-header
+  padding: 0
+  font-weight: 900
+  margin-bottom: 45px
+
+.voter-table-title
+  margin-top: 0px
+  margin-bottom: 40px
+  text-align: center
+  font-size: 35px
+
+// Switcher bar
+.switcher-bar-first
+  width: 65%
+  height: 15px
+  background: linear-gradient(to right, #179ee0 0%,#179ee0 100%)
+
+.switcher-bar-sec
+  position: absolute
+  top: 59px
+  right: 5px
+  width: 34%
+  height: 15px
+  background: repeating-linear-gradient(45deg, #179ee0, #179ee0 5px, #dee4e6 5px, #cdd1d4 10px)
+
+.pct-bar
+  width: 100%
+  height: 15px
+  background: black
+
+.pct-bar-labels
+  p
+    display: inline
+    font-weight: 600
+    color: #797979
+
+.small-text
+  font-size: 11px
+  color: #797979
+  float: right
+
+.pan
+  background: #377eb8
+
+.pri
+  background: #b71c1c
+
+.prd
+  background: #ffff33
+
+.morena
+  background: #ff7f00
+
+.population-100
+  background: rgb(127, 0, 0)
+
+.population-75
+  background: rgb(239, 101, 72)
+
+.population-50
+  background: rgb(252, 141, 89)
+
+.population-25
+  background: rgb(254, 232, 200)
+  
+.otros
+  background: #647329
+
+// Map Key
+.map-key
+  text-transform: capitalize
+  position: absolute
+  top: 100px
+  left: 265px
+  color: #666
+  z-index: 5
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26)
+  padding: 10px 0px 10px 10px
+  background: white
+
+.key-row-header
+  position: relative
+
+.key-row
+  overflow: hidden
+  padding: 3px 0
+  width: 200px
+
+.key-row-label
+  width: 30%
+  float: right
+  color: $black
+
+.key-right-label
+  font-weight: bold
+  float: right
+  padding: 5px
+  width: 65px
+  margin-right: 35px
+  color: $black
+
+.key-left-label
+  font-weight: bold
+  padding: 5px
+  width: 10px
+  float: left
+  color: $black
+
+.colors-row
+  width: 65%
+  float: left
+
+.color-box
+  width: 25%
+  height: 12px
+  float: left
+  
+.small-vertical-line
+  position: absolute
+  height: 6px
+  border-left: solid 1px #666
+  bottom: -43px
+
+.vertical-line-right-pos
+  left: 113px
+
+.vertical-line-left-pos
+  left: 15px
+
+// Sidebar
+.sidebar-text-title
+  color: $black
+  font-weight: 600
+  text-align: left
+  margin-bottom: 5px !important
+  text-transform: none
+
+.sidebar-text
+  padding: 8px
+  float: left
+  cursor: pointer
+  text-transform: none
+  border-radius: 4px
+
+.sidebar-text-left
+  @extend .sidebar-text
+
+.sidebar-text-right
+  @extend .sidebar-text
+  float: right
+
+.sidebar-selected
+  background: $primary
+  border-radius: 4px
+  color: $white
+
+.sidebar-buttons-box
+  height: 72px
+  margin-bottom: 20px
+
+.sidebar-projections
+  margin-bottom: 20px
+
+// Timeline
+.sidebar-timeline
+  padding-left: 25px
+
+.selected-timeline-item
+  color: #6fa6cc !important
+
+.timeline-item 
+  padding: 1em 2em 2em
+  position: relative
+  color: rgba(black, .7)
+  border-left: 2px solid rgba(black, .3)
+  
+  p 
+    font-size: 1rem;
+  
+  &::before 
+    content: attr(date-is)
+    position: absolute
+    left: 2em
+    font-weight: bold
+    top: 1em
+    display: block
+    font-family: 'Roboto', sans-serif
+    font-weight: 700
+    font-size: 1.2rem
+  
+  &::after 
+    width: 10px
+    height: 10px
+    display: block
+    top: 1em
+    position: absolute
+    left: -6px
+    border-radius: 10px
+    content: ''
+    border: 2px solid rgba(black, .3)
+    background: white
+
+  &:last-child 
+    border-image: linear-gradient(to bottom,rgba(black, .3) 60%, rgba(rgba(black, .3), 0)) 1 100%

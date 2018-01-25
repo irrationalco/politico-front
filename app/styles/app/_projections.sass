@@ -1,0 +1,114 @@
+.projections-sidebar
+  padding: 80px 15px 0px 15px
+  z-index: 100
+  width: 225px
+  height: 100%
+  position: fixed
+  border-right: 1px solid $gray
+  background-color: $white
+
+.projections-toolbar
+  position: absolute
+  width: 100%
+  height: 60px
+  z-index: 110
+  background-color: #6fa6cc
+  border-bottom: 1px solid $gray
+  background-color: $white
+
+// Charts
+#charts-panel
+  $padding: 15px
+  width: 300px
+  border-right: none
+  border-left: 1px solid $gray
+  right: -250px
+  overflow-y: auto
+  margin-top: 60px
+  padding: $padding
+  color: $black
+  .toggle-button
+    font-size: 20px
+    cursor: pointer
+    display: inline-block
+  .settings-button
+    @extend .toggle-button
+    position: absolute
+    right: $padding
+  #settings-panel
+    margin: 0
+    padding: 15px 15px
+    //background-color: white
+    //border: 1px solid $lightgray
+    .min-max p
+      display: inline-block
+    .min
+      margin-left: -5px
+    .max
+      float: right;
+      margin-right: -12px
+  .chart-title
+    text-align: center
+    font-weight: 600
+  p
+    margin: 0
+
+.projections-container
+  position: relative
+
+// Breadcrumbs
+.map-breadcrumbs
+  display: inline-block
+  height: 100%
+  padding: 20px 20px 20px 0px
+
+.map-links
+  padding: 0
+
+.map-link
+  padding: 0
+  display: inline
+  color: $black
+  cursor: pointer
+
+.map-link:first-child
+  padding: 0 0 0 15px
+
+.map-link:last-child
+  font-weight: 600
+  color: $black
+
+// Search
+.searchbar
+  width: 93%
+  border: none
+  background-color: transparent
+
+.single
+  .selectize-input
+    border: none !important
+    -webkit-box-shadow: none !important
+    box-shadow: none !important
+    background: $primary !important
+
+.searchbar-container
+  height: 100%
+  padding: 20px !important
+  width: 300px
+  float: right
+  display: inline-block
+  text-align: right
+  padding-top: 2px
+  padding-bottom: 0px
+  margin-left: 0px
+  color: #9e9e9e
+  input
+    margin-left: 0px
+    color: #8b8b8b
+  input[type=search]
+    border-bottom: 1px solid #c4c4c2
+    &:focus
+      outline: none
+  label
+    top: auto
+    color: #9e9e9e

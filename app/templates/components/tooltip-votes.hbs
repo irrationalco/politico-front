@@ -1,0 +1,27 @@
+<div id="tooltip-map">
+{{#if isPopulation}}
+
+	{{tooltip-population hoveredSection=hoveredSection}}
+	
+{{else}}
+
+	{{#if isNormal}}
+		{{tooltip-normal hoveredSection=hoveredSection totalVotes=totalVotes firstPartyColor=firstPartyColor firstParty=firstParty secondPartyColor=secondPartyColor secondParty=secondParty others=others }}
+	{{/if}}
+
+	{{#if isComparison}}
+		{{tooltip-comparison hoveredSection=hoveredSection sectionData=sectionData totalVotes=totalVotes}}
+
+	{{/if}}
+
+	{{#if isSingle}}
+		{{tooltip-single hoveredSection=hoveredSection sectionData=sectionData totalVotes=totalVotes}}
+	{{/if}}
+
+{{/if}}
+</div>
+{{#if isPopulation}}
+	{{map-key-population}}
+{{else}}
+	{{map-key}}
+{{/if}}

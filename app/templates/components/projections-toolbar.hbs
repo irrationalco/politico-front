@@ -1,0 +1,54 @@
+<div class="projections-toolbar">
+	<div class="map-breadcrumbs">
+		<ul class="map-links">
+			<li class="map-link" {{action 'setCountry'}}>
+				México
+			</li>
+			{{#if state}}
+			<li class="map-link" {{action 'setState'}}>
+				> {{state}}			
+			</li>
+			{{/if}}
+
+			{{#if municipalityDivision}}
+				{{#if municipality}}
+				<li class="map-link" {{action 'setMunicipality'}}>
+					> {{municipality}}			
+				</li>
+				{{/if}}
+			{{else}}
+				{{#if federalDistrict}}
+				<li class="map-link" {{action 'setFederalDistrict'}}>
+					> Distrito Federal {{federalDistrict}}			
+				</li>
+				{{/if}}
+			{{/if}}
+
+			{{#if section}}
+			<li class="map-link" {{action 'setSection'}}>
+				> Sección: {{section}}			
+			</li>
+			{{/if}}
+		</ul>
+	</div>
+	<div class="searchbar-container">
+		{{!-- {{input type='search' class='searchbar' key-down='setSearchValue' value=searchValue placeholder="Search"}}
+		<i class="fa fa-search ticket-table-search-icon"></i> --}}
+
+		{{#power-select-multiple
+		selected=selectedCities
+		options=cities
+		placeholder='Busca por Estado'
+		onchange=(action "chooseSelection")
+		as |obj|
+		}}
+			{{obj}}
+		{{/power-select-multiple}}
+	</div>
+</div>
+
+{{!-- <h2 {{action 'setState'}}>México > {{state}}</h2> --}}
+
+{{!-- {{#if municipality}}
+{{municipality}}
+{{/if}} --}}

@@ -1,0 +1,15 @@
+<div>
+	<p class="sidebar-text-title no-margin no-border">Partidos</p>
+	<div class="ticket-textfield-container" id="select-party">
+		{{ember-selectize
+		open=true
+		content=parties
+		multiple=true
+		selection=temporalParties
+		add-item='addParty'
+		remove-item='removeParty'
+		on-blur='setSelectedParties'
+		placeholder="Escoge un partido."}}
+	</div>
+</div>
+
