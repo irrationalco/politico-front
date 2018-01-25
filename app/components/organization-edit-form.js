@@ -28,7 +28,7 @@ export default Ember.Component.extend({
 
 		create(org) {
 			this.get('session').authorize('authorizer:oauth2', (headerName, headerValue) => {
-				this.get('ajax').post(config.localhost + '/api/organizations', {
+				this.get('ajax').post(config.host + '/api/organizations', {
 					headers: {
 						[headerName]: headerValue
 					},
@@ -52,7 +52,7 @@ export default Ember.Component.extend({
 
 		update(org) {
 			this.get('session').authorize('authorizer:oauth2', (headerName, headerValue) => {
-				this.get('ajax').put(config.localhost + '/api/organizations/' + org.get('id'), {
+				this.get('ajax').put(config.host + '/api/organizations/' + org.get('id'), {
 					headers: {
 						[headerName]: headerValue
 					},

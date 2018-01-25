@@ -34,7 +34,7 @@ export default Ember.Component.extend({
 		
 		create(suborg) {
 			this.get('session').authorize('authorizer:oauth2', (headerName, headerValue) => {
-				this.get('ajax').post(config.localhost + '/api/suborganizations', {
+				this.get('ajax').post(config.host + '/api/suborganizations', {
 					headers: {
 						[headerName]: headerValue
 					},
@@ -58,7 +58,7 @@ export default Ember.Component.extend({
 		},
 		update(suborg) {
 			this.get('session').authorize('authorizer:oauth2', (headerName, headerValue) => {
-				this.get('ajax').put(config.localhost + '/api/suborganizations/' + suborg.get('id'), {
+				this.get('ajax').put(config.host + '/api/suborganizations/' + suborg.get('id'), {
 					headers: {
 						[headerName]: headerValue
 					},

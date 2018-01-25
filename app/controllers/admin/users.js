@@ -16,7 +16,7 @@ export default Ember.Controller.extend({
 		
 		update(user) {
 			this.get('session').authorize('authorizer:oauth2', (headerName, headerValue) => {
-				this.get('ajax').put(config.localhost + '/api/users/' + user.get('id'), {
+				this.get('ajax').put(config.host + '/api/users/' + user.get('id'), {
 					headers: {
 						[headerName]: headerValue
 					},

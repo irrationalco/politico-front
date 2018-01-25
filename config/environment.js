@@ -2,9 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    host: 'https://asesorpolitico.herokuapp.com',
-    // localhost: 'https://asesorpolitico.herokuapp.com',
-    localhost: 'http://localhost:3000',
+    host: 'http://localhost:3000',
     modulePrefix: 'frontend',
     environment: environment,
     rootURL: '/',
@@ -49,8 +47,12 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
   }
 
-  if (environment === 'production') {
+  if (environment === 'staging') {
+    ENV.host = 'https://staging-asesor-politico.herokuapp.com';
+  }
 
+  if (environment === 'production') {
+    ENV.host = 'https://asesorpolitico.herokuapp.com';
   }
 
   return ENV;

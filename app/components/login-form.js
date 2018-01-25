@@ -1,8 +1,11 @@
 import Ember from 'ember';
 
-const { service } = Ember.inject;
+const {
+	Component,
+ 	inject: { service }
+} = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
 	session: service('session'),
 	notify:	 service('notify'),
 
@@ -11,7 +14,7 @@ export default Ember.Component.extend({
       let { identification, password } = this.getProperties('identification', 'password');
       this.get('session').authenticate('authenticator:oauth2', identification, password).catch((reason) => {
       	console.log(reason);
-      	this.get('notify').alert("Error: Asegurate que tu contraseña y usuario sean correctos.", {closeAfter: null});
+      	this.get('notify').alert('Error: Asegurate que tu contraseña y usuario sean correctos.', { closeAfter: null });
       });
     }
 	}

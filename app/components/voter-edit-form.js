@@ -134,7 +134,7 @@ export default Ember.Component.extend({
   actions: {
     create(voter) {
       this.get('session').authorize('authorizer:oauth2', (headerName, headerValue) => {
-        this.get('ajax').post(config.localhost + '/api/voters', this.voterObject(voter, headerName, headerValue))
+        this.get('ajax').post(config.host + '/api/voters', this.voterObject(voter, headerName, headerValue))
           .then(() => {
             voter.deleteRecord();
             this.sendAction('transitionToVoters');
@@ -148,7 +148,7 @@ export default Ember.Component.extend({
 
     update(voter) {
       this.get('session').authorize('authorizer:oauth2', (headerName, headerValue) => {
-        this.get('ajax').put(config.localhost + '/api/voters/' + voter.get('id'), this.voterObject(voter, headerName, headerValue))
+        this.get('ajax').put(config.host + '/api/voters/' + voter.get('id'), this.voterObject(voter, headerName, headerValue))
           .then(() => {
             voter.deleteRecord();
             this.sendAction('transitionToVoters');
