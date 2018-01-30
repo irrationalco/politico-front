@@ -12,8 +12,7 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember test",
-    "staging-deploy": "ember build && firebase deploy --only hosting"
+    "test": "ember test"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
