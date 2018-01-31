@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 const {
 	Component,
- 	inject: { service }
+	inject: { service }
 } = Ember;
 
 export default Component.extend({
@@ -11,10 +11,10 @@ export default Component.extend({
 
 	actions: {
 		authenticate() {
-      let { identification, password } = this.getProperties('identification', 'password');
-      this.get('session').authenticate('authenticator:oauth2', identification, password).catch((reason) => {
-      	console.log(reason);
-      	this.get('notify').alert('Error: Asegurate que tu contraseña y usuario sean correctos.', { closeAfter: null });
+		let { identification, password } = this.getProperties('identification', 'password');
+		this.get('session').authenticate('authenticator:oauth2', identification, password).catch((reason) => {
+		console.log(reason);
+		this.get('notify').alert('Error: Asegurate que tu contraseña y usuario sean correctos.', { closeAfter: null });
       });
     }
 	}

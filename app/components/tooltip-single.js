@@ -34,11 +34,11 @@ export default Ember.Component.extend({
 
 		this.set('party', party);
 		this.set('others', others);
-		this.get('calculateSingleBar').perform(party, others);
+		this.get('calculateSingleBar').perform(party);
 
 	}).restartable(),
 
-	calculateSingleBar: task(function * (party, others) {
+	calculateSingleBar: task(function * (party) {
 		let partyColor = this.get('partiesManager').get('colors')[party.name];
 		let othersColor = this.get('partiesManager').get('colors')["others"];
 
@@ -47,7 +47,7 @@ export default Ember.Component.extend({
 
 		let bar = Ember.String.htmlSafe("background: linear-gradient(to right, " + barFirstPart[0] + barFirstPart[1] + barSecondPart[0] + barSecondPart[1]);
 
-		this.set('percentageBar', bar);
+		yield this.set('percentageBar', bar);
 	}).restartable()
 
 });

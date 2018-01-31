@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import topojson from "npm:topojson";
-import { task, timeout } from 'ember-concurrency';
+import { task } from 'ember-concurrency';
 
 const { isEmpty } = Ember;
 
@@ -25,7 +25,7 @@ export default Ember.Service.extend({
   // Function that gets a specific state object by name and loads it municipalities
   getState: task(function * (stateName) {
     try {
-      if (isEmpty(this.get('states'))) { let states = yield this.get('loadStatesData').perform(); }
+      if (isEmpty(this.get('states'))) { yield this.get('loadStatesData').perform(); }
 
       let state = this.get('states').filterBy('properties.state_name', stateName);
 
@@ -33,8 +33,8 @@ export default Ember.Service.extend({
         throw new Error("El código del estado es incorrecto.");
       } else {
         let stateCode = state[0].properties.state_code;
-        let munis = yield this.get('loadMunicipalitiesData').perform(stateCode);
-        let fedDistricts = yield this.get('loadFederalDistrictsData').perform(stateCode);
+        yield this.get('loadMunicipalitiesData').perform(stateCode);
+        yield this.get('loadFederalDistrictsData').perform(stateCode);
         return state[0];
       }
     } catch(e) {
@@ -45,14 +45,14 @@ export default Ember.Service.extend({
   // Function that gets a specific district object by code and loads its sections
   getFederalDistrict: task(function * (districtCode, stateCode) {
     try {
-      if (isEmpty(this.get('federalDistricts'))) { let fedDistrictsData = yield this.get('loadFederalDistrictsData').perform(stateCode); }
+      if (isEmpty(this.get('federalDistricts'))) { yield this.get('loadFederalDistrictsData').perform(stateCode); }
 
       let district = this.get('federalDistricts').filterBy('properties.district_code', parseInt(districtCode));
 
       if (isEmpty(district)) {
         throw new Error("No existe ese código de distrito para ese estado.");
       } else {
-        let sectionsData = yield this.get('loadSectionsData').perform(stateCode, parseInt(districtCode), 'district_code');
+        yield this.get('loadSectionsData').perform(stateCode, parseInt(districtCode), 'district_code');
         return district[0];
       }
     } catch(e) {
@@ -63,14 +63,14 @@ export default Ember.Service.extend({
   // Function that gets a specific municipality object by name and loads its sections
   getMunicipality: task(function * (muniName, stateCode) {
     try {
-      if (isEmpty(this.get('municipalities'))) { let munisData = yield this.get('loadMunicipalitiesData').perform(stateCode); }
+      if (isEmpty(this.get('municipalities'))) { yield this.get('loadMunicipalitiesData').perform(stateCode); }
 
       let muni = this.get('municipalities').filterBy('properties.mun_name', muniName);
 
       if (isEmpty(muni)) {
         throw new Error("El nombre del municipio es incorrecto. Asegurate que tenga acentos.");
       } else {
-        let sectionsData = yield this.get('loadSectionsData').perform(stateCode, muni[0].properties.mun_code, 'mun_code');
+        yield this.get('loadSectionsData').perform(stateCode, muni[0].properties.mun_code, 'mun_code');
         return muni[0];
       }
     } catch(e) {
@@ -81,7 +81,7 @@ export default Ember.Service.extend({
   // Function that gets a specific section object by section code and municipality code
   getSection: task(function * (stateCode, muniCode, sectionCode) {
     try {
-      if (isEmpty(this.get('sections'))) { let sectionsData = yield this.get('loadSectionsData').perform(stateCode, muniCode, 'mun_code'); }
+      if (isEmpty(this.get('sections'))) { yield this.get('loadSectionsData').perform(stateCode, muniCode, 'mun_code'); }
 
       let section = this.get('sections').filterBy('properties.section_code', parseInt(sectionCode));
 
@@ -98,7 +98,7 @@ export default Ember.Service.extend({
   // Function that gets a specific section object by section code and federal district code
   getSectionByDistrict: task(function * (stateCode, districtCode, sectionCode) {
     try {
-      if (isEmpty(this.get('sections'))) { let sectionsData = yield this.get('loadSectionsData').perform(stateCode, districtCode, 'district_code'); }
+      if (isEmpty(this.get('sections'))) { yield this.get('loadSectionsData').perform(stateCode, districtCode, 'district_code'); }
 
       let section = this.get('sections').filterBy('properties.section_code', parseInt(sectionCode));
 
