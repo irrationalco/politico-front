@@ -5,20 +5,22 @@ import d3ScaleChromatic from "npm:d3-scale-chromatic";
 import { task, timeout } from 'ember-concurrency';
 
 const { isEmpty } = Ember;
+const { service } = Ember.inject;
+const { oneWay } = Ember.computed;
 
 export default Ember.Component.extend({
 
-	partiesManager:  Ember.inject.service("parties"),
-	store: 					 Ember.inject.service(),
-	cartography: 		 Ember.inject.service(),
+	partiesManager: service("parties"),
+	store:          service(),
+	cartography:    service(),
 
-	selectedParties: 				 Ember.computed.oneWay("partiesManager.selectedParties"),
-	states: 				 				 Ember.computed.oneWay('cartography.states'),
-	municipalities:  			 	 Ember.computed.oneWay('cartography.municipalities'),
-	municipalitiesBorders: 	 Ember.computed.oneWay('cartography.municipalitiesBorders'),
-	federalDistricts: 			 Ember.computed.oneWay('cartography.federalDistricts'),
-	federalDistrictsBorders: Ember.computed.oneWay('cartography.federalDistrictsBorders'),
-	sections: 							 Ember.computed.oneWay('cartography.sections'),
+	selectedParties:         oneWay("partiesManager.selectedParties"),
+	states:                  oneWay('cartography.states'),
+	municipalities:          oneWay('cartography.municipalities'),
+	municipalitiesBorders:   oneWay('cartography.municipalitiesBorders'),
+	federalDistricts:        oneWay('cartography.federalDistricts'),
+	federalDistrictsBorders: oneWay('cartography.federalDistrictsBorders'),
+	sections:                oneWay('cartography.sections'),
 
 	scaleExtent: 	[1 << 11, 1 << 26.5],
 
@@ -158,7 +160,7 @@ export default Ember.Component.extend({
 			this.removeMunicipalities();
 			this.set('stateCode', state.properties.state_code);
 			this.updateCurrData();
-			let zoomed = yield this.get('zoomToObject').perform(state);
+			yield this.get('zoomToObject').perform(state);
 			
 			if (this.get('mapDivision') === 'federal') {
 				this.renderFederalDistricts();
@@ -178,7 +180,7 @@ export default Ember.Component.extend({
 					let district = yield this.get('cartography.getFederalDistrict').perform(newFedDistrict, this.get('stateCode'));
 					this.removeSections();
 					this.updateCurrData();
-					let zoomed = yield this.get('zoomToObject').perform(district);
+          yield this.get('zoomToObject').perform(district);
 					this.renderSections();
 					
 				} else {
@@ -189,7 +191,7 @@ export default Ember.Component.extend({
 					let district = yield this.get('cartography.getFederalDistrict').perform(newFedDistrict, this.get('stateCode'));
 					this.set('fedDistrictCode', district.properties.district_code);
 					this.updateCurrData();
-					let zoomed = yield this.get('zoomToObject').perform(district);
+          yield this.get('zoomToObject').perform(district);
 					this.renderSections();
 					
 				}
@@ -201,7 +203,7 @@ export default Ember.Component.extend({
 					let municipality = yield this.get("cartography.getMunicipality").perform(newMuni, this.get('stateCode'));
 					this.removeSections();
 					this.updateCurrData();
-					let zoomed = yield this.get('zoomToObject').perform(municipality);
+          yield this.get('zoomToObject').perform(municipality);
 					this.renderSections();
 
 				} else {
@@ -209,7 +211,7 @@ export default Ember.Component.extend({
 					this.set('stateCode', state.properties.state_code);
 					this.renderMunicipalities();
 					let municipality = yield this.get('cartography.getMunicipality').perform(newMuni, this.get('stateCode'));
-					let zoomed = yield this.get('zoomToObject').perform(municipality);
+          yield this.get('zoomToObject').perform(municipality);
 					this.set('muniCode', municipality.properties.mun_code);
 					this.updateCurrData();
 					this.renderSections();
@@ -226,7 +228,7 @@ export default Ember.Component.extend({
 					let section = yield this.get('cartography.getSectionByDistrict').perform(this.get('stateCode'),
 										this.get('fedDistrictCode'), newSection);
 					this.updateCurrData();
-					let zoomed = yield this.get('zoomToObject').perform(section);
+          yield this.get('zoomToObject').perform(section);
 
 				} else {
 					let state = yield this.get('cartography.getState').perform(newState);
@@ -238,7 +240,7 @@ export default Ember.Component.extend({
 
 					let section = yield this.get('cartography.getSectionByDistrict').perform(this.get('stateCode'), this.get('fedDistrictCode'), newSection);
 					this.updateCurrData();
-					let zoomed = yield this.get('zoomToObject').perform(section);
+          yield this.get('zoomToObject').perform(section);
 					this.renderSections();
 				}
 			} else {
@@ -248,7 +250,7 @@ export default Ember.Component.extend({
 				} else if (currState === newState && currMuni === currMuni) {
 
 					let section = yield this.get('cartography.getSection').perform(this.get('stateCode'), this.get('muniCode'), newSection);
-					let zoomed = this.get('zoomToObject').perform(section);
+          this.get('zoomToObject').perform(section);
 
 				} else {
 					let state = yield this.get('cartography.getState').perform(newState);
@@ -260,7 +262,7 @@ export default Ember.Component.extend({
 
 					let section = yield this.get('cartography.getSection').perform(this.get('stateCode'), this.get('muniCode'), newSection);
 					this.updateCurrData();
-					let zoomed = this.get('zoomToObject').perform(section);
+          this.get('zoomToObject').perform(section);
 					this.renderSections();
 				}
 			}
@@ -306,8 +308,8 @@ export default Ember.Component.extend({
 			if(isEmpty(section)) {
 				return 'transparent';
 			} else {
-				let parties = this.get('partiesManager').computeComparison(s);
-				let color = this.get('partiesManager').getComparisonColor(parties, s);
+				let parties = this.get('partiesManager').computeComparison();
+				let color = this.get('partiesManager').getComparisonColor(parties);
 				return color['hex']; 
 			}
 		} else {
@@ -388,16 +390,16 @@ export default Ember.Component.extend({
 				emberContext.set('hoveredSection', d.properties);
 				d3.select(this).style("stroke-width", 3 / emberContext.get('transform').k);
 			})
-			.on("mouseover", function(d) {
+			.on("mouseover", function() {
 				emberContext.get('tooltip')
 					.style('display', "inline");
 			})
-			.on("mousemove", function(d) {
+			.on("mousemove", function() {
 				emberContext.get('tooltip')
 					.style("left", (d3.event.pageX - 200) + "px")
 					.style("top", (d3.event.pageY - 250) + "px");
 			})
-			.on("mouseout", function(d) {
+			.on("mouseout", function() {
 				emberContext.get('tooltip')
 					.style('display', 'none');
 				emberContext.set('hoveredSection', null);
@@ -448,7 +450,7 @@ export default Ember.Component.extend({
 	},
 
 	renderStates: task(function * () {
-		if (isEmpty(this.get('states'))) { let statesData = yield this.get('cartography.loadStatesData').perform(); }
+		if (isEmpty(this.get('states'))) { yield this.get('cartography.loadStatesData').perform(); }
 		let emberContext = this;
 
 		this.get('statesLayer').selectAll("path")
@@ -551,31 +553,11 @@ export default Ember.Component.extend({
 			this.sendAction('setSection', '');
 			this.sendAction('setFederalDistrict', '');
 		}
-
-		// if (active.node() === this) {
-		// 	return reset();
-		// }
-		
-		// active.classed("active", false);
-		// active = d3.select(this).classed("active", true);
-
-		// let transform = this.calculateZoomToBBox(d, this.get('path'));
-
-		// Ember.run.later(this, () => {
-		// 	this.get('svg').transition()
-		// 		.duration(950)
-		// 		.call(this.get('zoom').transform, transform)
-		// 		.on("end", this.draw(d));
-		// }, 50);
 	},
 
 	zoomToObject: task(function * (d) {
 		this.get('zoom').transform;
 		let transform = this.calculateZoomToBBox(d, this.get('path'));
-
-		let currTransform = this.get('zoom').transform;
-
-		if (transform === currTransform) {}
 
 		Ember.run.later(this, () => {
 			this.get('svg').transition()
@@ -586,7 +568,7 @@ export default Ember.Component.extend({
 		return true;
 	}),
 
-	zoomToCoordinates(coordinates, zoomValue, element) {
+	zoomToCoordinates(coordinates, zoomValue) {
 		let projection = this.get('projection');
 		let center = projection(this.get('centerCoords'));
 
@@ -595,22 +577,4 @@ export default Ember.Component.extend({
 			.scale(zoomValue)
 			.translate(-center[0], -center[1]));
 	},
-
-	// Reset zoom and remove cities
-	reset() {
-		active.classed("active", false);
-		active = d3.select(null);
-
-		this.get('muniLayer').selectAll("*").remove();
-
-		this.sendAction('setMunicipality', "");
-		this.sendAction('setState', "");
-
-		svg.transition()
-			.duration(750)
-			.call(this.get('zoom').transform, d3.zoomIdentity
-			.translate(this.get('width') / 2, this.get('height') / 2)
-			.scale(1 << 13)
-			.translate(-this.get('center')[0], -this.get('center')[1]));
-	}
 });

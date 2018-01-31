@@ -10,7 +10,6 @@ export default Ember.Component.extend({
   session: service('session'),
 
   voterObject(voter, headerName, headerValue) {
-    var tmp = this.get('session.currentUser');
     voter.set('date_of_birth', new Date(this.yearOfBirth, this.monthOfBirth - 1, this.dayOfBirth));
     return {
       headers: {

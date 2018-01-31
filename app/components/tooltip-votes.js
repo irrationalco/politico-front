@@ -58,10 +58,10 @@ export default Ember.Component.extend({
 		let movement = this.get('firstParty.percentage') + othersPct;
 
 		let secondPart = [othersColor + " " + this.get('firstParty.percentage') + "%,", 
-						  othersColor + " " + movement + "%," ];
+                      othersColor + " " + movement + "%," ];
 
 		let thirdPart = [spColor + " " + movement + "%,", 
-						  spColor + " " + 100 + "%);" ];
+                     spColor + " " + 100 + "%);" ];
 
 		return Ember.String.htmlSafe("background: linear-gradient(to right, " + firstPart[0] + firstPart[1] + secondPart[0] 
 			+ secondPart[1] + thirdPart[0] +thirdPart[1]);

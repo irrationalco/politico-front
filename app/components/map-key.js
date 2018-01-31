@@ -20,12 +20,12 @@ export default Ember.Component.extend({
 			arrParties.push(party2);
 			
 		} else if (selParties.length >= 4) {
-			for (var i = 0; i < 4; i++) {
+			for (let i = 0; i < 4; i++) {
 				let party = { name: selParties[i], color: colors[selParties[i]] };
 				arrParties.push(party);
 			}
 		} else if(selParties.length > 0) {
-			for (var i = 0; i < selParties.length; i++) {
+			for (let i = 0; i < selParties.length; i++) {
 				let party = { name: selParties[i], color: colors[selParties[i]] };
 				arrParties.push(party);
 			}

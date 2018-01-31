@@ -2,12 +2,12 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 	elections:[
-						 {name: "Presidente - 2012", type: "prs", year: "2012", key: "prs-2012"}, 
-						 {name: "Diputado Fed. - 2015", type: "dif", year: "2015", key: "dif-2015"}, 
-						 {name: "Senador - 2012", type: "sen", year: "2012", key: "sen-2012"}, 
-						 {name: "Diputado Fed. - 2012", type: "dif", year: "2012", key: "dif-2012"}, 
-						 {name: "Diputado Fed. - 2009", type: "dif", year: "2009", key: "dif-2009"}
-						],
+    {name: "Presidente - 2012", type: "prs", year: "2012", key: "prs-2012"}, 
+    {name: "Diputado Fed. - 2015", type: "dif", year: "2015", key: "dif-2015"}, 
+    {name: "Senador - 2012", type: "sen", year: "2012", key: "sen-2012"}, 
+    {name: "Diputado Fed. - 2012", type: "dif", year: "2012", key: "dif-2012"}, 
+    {name: "Diputado Fed. - 2009", type: "dif", year: "2009", key: "dif-2009"}
+  ],
 
 	selectedElection: { name: "Presidente-2012", type: "prs", year: "2012", key: "prs-2012" },
 
@@ -27,10 +27,9 @@ export default Ember.Component.extend({
 		let election = this.get('types')[electionType];
 
 		let selectedElection = { name: election + "-" + year, 
-														 type: electionType, 
-														 year: year, 
-														 key: electionType + "-" + year};
-
+                             type: electionType, 
+                             year: year, 
+                             key: electionType + "-" + year};
 		this.set('selectedElection', selectedElection);
 	},
 

@@ -11,7 +11,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 		return this.store.findRecord('poll', params.poll_id);
 	},
 
-	afterModel(model,transition) {
+	afterModel(model) {
 		let sectionIds = model.get('sections').map(section => { return section.get('id'); });
 		this.get('pollManager').setPollId(model.get('id'));
 		this.get('pollManager').setSections(sectionIds);
@@ -19,10 +19,10 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 		this.get('pollManager').debugValues();
 	},
 
-	redirect(model, transition) {
+	redirect(model) {
 		let firstSection = model.get('sections').objectAt(0);
-    	this.transitionTo('polls.sections', firstSection);
-  	},
+    this.transitionTo('polls.sections', firstSection);
+  },
 
 	actions: {
 		testAction: function() {
