@@ -47,11 +47,11 @@ export default Ember.Component.extend({
 		this.set('firstParty', firstParty);
 		this.set('secondParty', secondParty);
 		this.set('others', others);
-		this.get('calculateComparisonBar').perform(firstParty, secondParty, others);
+		this.get('calculateComparisonBar').perform(firstParty, secondParty);
 
 	}).restartable(),
 
-	calculateComparisonBar: task(function * (firstParty, secondParty, others) {
+	calculateComparisonBar: task(function * (firstParty, secondParty) {
 		let firstPartyColor = this.get('partiesManager').get('colors')[firstParty.name];
 		let secondPartyColor = this.get('partiesManager').get('colors')[secondParty.name];
 		let othersColor = "#cacaca";
@@ -70,7 +70,6 @@ export default Ember.Component.extend({
 
 		let bar = Ember.String.htmlSafe("background: linear-gradient(to right, " + barFirstPart[0] + barFirstPart[1] + barSecondPart[0] + barSecondPart[1] + barLastPart[0] + barLastPart[1]);
 		
-		this.set('percentageBar', bar);
-
+		yield this.set('percentageBar', bar); 
 	}).restartable()
 });

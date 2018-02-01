@@ -1,12 +1,8 @@
 import Ember from 'ember';
-import config from '../config/environment';
-import { task, timeout } from 'ember-concurrency';
 
-const { isEmpty } = Ember;
 const { service } = Ember.inject;
 
 export default Ember.Component.extend({
-
 	store: 	 		 service('store'),
 	notify:  		 service('notify'),
 	cartography: service('cartography'),
@@ -31,7 +27,7 @@ export default Ember.Component.extend({
 		quickCreate(voter) {
 			voter.state = this.get('selectedState');
 			voter.save()
-			.then(res => {
+			.then(() => {
 				this.sendAction("refreshVoters");
 				this.get('notify').success("Registro guardado exitosamente.");
 				this.send("reset");

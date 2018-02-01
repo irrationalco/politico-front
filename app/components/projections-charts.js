@@ -3,6 +3,8 @@ import {
   task
 } from 'ember-concurrency';
 
+const { $ } = Ember;
+
 export default Ember.Component.extend({
 
   actions: {
@@ -50,13 +52,6 @@ export default Ember.Component.extend({
     };
   },
 
-  getOther(activeParties) {
-    return this.get('partiesManager').parties.filter((x) => activeParties.indexOf(x) === -1)
-      .reduce((s, v) => {
-        return s + raw[0].get(v);
-      }, 0);
-  },
-
   formatOther(parties, raw) {
     return {
       label: "Otros",
@@ -93,7 +88,7 @@ export default Ember.Component.extend({
   },
 
   filterPartiesLine(raw) {
-    let ratios = this.get('partiesManager').parties.map((s) => 0);
+    let ratios = this.get('partiesManager').parties.map(() => 0);
     raw.forEach((year, idx) => {
       let total = this.get('partiesManager').parties.reduce((s, v) => {
         return s + year.get(v);
@@ -144,7 +139,7 @@ export default Ember.Component.extend({
           .concat(this.formatOther(parties.other, raw))
       };
     }
-    return result;
+    yield result;
   }),
 
   presidentChartData: null,
@@ -167,7 +162,7 @@ export default Ember.Component.extend({
 
   resetCharts: task(function* () {
     this.chartNames.forEach((name) => this.set(name, null));
-    let charts = this.chartNames.map((item, index) =>
+    let charts = this.chartNames.map((item) =>
       this.get('setChart').perform(item, this.get(item + 'Data')));
     for (let i = 0; i < charts.length; i++) {
       charts[i] = yield charts[i];

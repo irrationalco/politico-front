@@ -47,7 +47,6 @@ export default Ember.Service.extend({
 
   computeComparison(section) {
     let sP = this.get('selectedParties');
-    let parties = [];
     if (section.get(sP[1]) > section.get(sP[0])) {
       return [sP[1], sP[0]];
     } else {

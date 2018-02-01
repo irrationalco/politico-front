@@ -8,7 +8,7 @@ export default Ember.Controller.extend({
 	session: service('session'),
 
 	queryParams: ['state', 'municipality', 'section', 'federalDistrict', 'mapDivision',
-				  'dataType', 'parties', 'election', 'year'],
+                'dataType', 'parties', 'election', 'year'],
 
 	state: "",
 	municipality: "",
