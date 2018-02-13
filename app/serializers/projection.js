@@ -14,7 +14,7 @@ export default DS.JSONAPISerializer.extend({
     totalVotes: 	'total_votes',
     electionType: 'election_type',
     year: 				'year',
-    PAN: 	 				'PAN',
+    PAN: 	 			'PAN',
     PCONV: 				'PCONV',
     PES:   				'PES',
     PH:    				'PH',
