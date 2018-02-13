@@ -13,7 +13,8 @@
     "build": "ember build",
     "start": "ember server",
     "test": "ember test",
-    "staging-deploy": "ember build --environment=staging && firebase deploy --only hosting --project staging-politico"
+    "staging-deploy": "ember build --environment=staging && firebase deploy --only hosting --project staging-politico",
+    "production-deploy": "ember build --environment=production && firebase deploy --only hosting --project production-politico"  
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
