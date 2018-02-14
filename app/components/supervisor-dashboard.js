@@ -68,7 +68,7 @@ export default FollowerDashboard.extend({
   getCapturists: task(function* (headerName, headerValue) {
     try {
       this.set('loadingCapturists', true);
-      let result = yield this.get('ajax').request(config.localhost + '/api/ine/dashboard', {
+      let result = yield this.get('ajax').request(config.host + '/api/ine/dashboard', {
         accepts: {
           json: 'application/json'
         },

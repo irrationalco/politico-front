@@ -27,7 +27,7 @@ export default Ember.Component.extend({
 
   runQuery: task(function* (headerName, headerValue) {
     try {
-      let result = yield this.get('ajax').request(config.localhost + '/api/ine/dashboard', {
+      let result = yield this.get('ajax').request(config.host + '/api/ine/dashboard', {
         accepts: {
           json: 'application/json'
         },
