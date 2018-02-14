@@ -5,7 +5,7 @@
                 <h4 class="voter-edit-title">{{form-title}}</h4>
             </div>
             <div class="panel-body">
-                <form {{action (if voter.id 'update' 'create') voter on="submit" }} accept-charset="UTF-8" role="form" class="form-signin">
+                <form {{action 'save' voter on="submit" }} accept-charset="UTF-8" role="form" class="form-signin">
                     <fieldset id="voter-edit">
                         <div class="form-group row">
                             <div class="form-group row" style="margin-bottom:0">
