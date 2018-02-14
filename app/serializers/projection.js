@@ -1,32 +1,19 @@
-// Explicitly telling the serializer to look for pary names in caps,
+// Slowly migrating all models to the fastjsonapi, when all models use fastjson api, we can create just an application.js serializer
+
+// Explicitly telling the serializer to look for underscores not hyphens,
 // since fast_jsonapi doesn't decapitalize attributes like AMS did, 
 // also fast_jsonapi doesn't refactor underscores to hyphens which ember's JsonApi serializer expects to
-// so unless it is fixed in the future, we have to create a serializer whenever we use fast_jsonapi for a model
+import Ember from 'ember';
 import DS from 'ember-data';
 
+var underscore = Ember.String.underscore;
+
 export default DS.JSONAPISerializer.extend({
-  attrs: {
-    sectionCode:  'section_code',
-    muniCode: 		'muni_code',
-    stateCode: 		'state_code',
-    districtCode: 'district_code',
-    nominalList:  'nominal_list',
-    totalVotes: 	'total_votes',
-    electionType: 'election_type',
-    year: 				'year',
-    PAN: 	 			'PAN',
-    PCONV: 				'PCONV',
-    PES:   				'PES',
-    PH:    				'PH',
-    PMC:   				'PMC',
-    PMOR:  				'PMOR',
-    PNA:   				'PNA',
-    PPM:   				'PPM',
-    PRD:   				'PRD',
-    PRI:   				'PRI',
-    PSD:   				'PSD',
-    PSM:   				'PSM',
-    PT:    				'PT',
-    PVEM:  				'PVEM'
-  }
+    keyForAttribute: function(attr) {
+        return underscore(attr);
+    },
+
+    keyForRelationship: function(rawKey) {
+        return underscore(rawKey);
+    }
 });

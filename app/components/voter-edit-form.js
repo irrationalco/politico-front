@@ -131,17 +131,18 @@ export default Ember.Component.extend({
   yearOfBirth: NaN,
 
   actions: {
+
     create(voter) {
-      this.get('session').authorize('authorizer:oauth2', (headerName, headerValue) => {
-        this.get('ajax').post(config.host + '/api/voters', this.voterObject(voter, headerName, headerValue))
-          .then(() => {
-            voter.deleteRecord();
-            this.sendAction('transitionToVoters');
-          })
-          .catch(err => {
-            console.log(err);
-            this.get('notify').alert("Make sure all fields are filled correctly.");
-          });
+      voter.set('date_of_birth', new Date(this.yearOfBirth, this.monthOfBirth - 1, this.dayOfBirth));
+      voter.save()
+      .then(() => {
+        this.sendAction("refreshVoters");
+        this.get('notify').success("Registro guardado exitosamente.");
+        this.sendAction('transitionToVoters');
+      })
+      .catch(err => {
+        console.log(err);
+        this.get('notify').alert("El registro no pudo ser guardado.");
       });
     },
 
