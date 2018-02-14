@@ -13,9 +13,9 @@ export default Ember.Component.extend({
 	selectedParties: Ember.computed.oneWay('partiesManager.selectedParties'),
 
 	actions: {
-		addParty(item) { console.log(item); },
+		addParty(item) {},
 
-		removeParty(item) { console.log(item); },
+		removeParty(item) {},
 
 		setSelectedParties() {
 			this.get('partiesManager').setSelectedParties(this.get('temporalParties'));			
