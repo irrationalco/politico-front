@@ -10,6 +10,9 @@ module.exports = function (defaults) {
       group: true,
       rulesDir: 'eslint-rules',
       extensions: ['js'],
+    },
+    'ember-cli-babel': {
+      includePolyfill: true
     }
   });
 
