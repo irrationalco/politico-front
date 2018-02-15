@@ -119,8 +119,7 @@ export default Ember.Component.extend({
     },
 
     updateState(voter, value) {
-      voter.set('state_code', value + 1);
-      voter.set('state', this.states[value]);
+      voter.set('state', value);
     },
   }
 });
