@@ -52,7 +52,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.host = 'https://asesorpolitico.herokuapp.com';
+    ENV.host = 'https://production-asesor-politico.herokuapp.com';
   }
 
   return ENV;

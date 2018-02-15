@@ -9,6 +9,7 @@ module.exports = {
     browser: true
   },
   rules: {
-    "no-console": ["error", { allow: ["log"] }]
+    "no-console": ["error", { allow: ["log"] }],
+    "no-unused-vars":  ["error", { args: "none" }]
   }
 };
