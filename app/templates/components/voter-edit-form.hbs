@@ -64,8 +64,8 @@
                                     <label>Estado</label>
                                     {{#x-select value=voter.state required=true class="form-control voter-edit-select" on-change=(action "updateState" voter) as |st|}}
                                         {{#st.option value='' disabled=true selected=true hidden=true}}Seleccionar{{/st.option}}
-                                        {{#each states as |state idx|}}
-                                            {{#st.option value=idx}}{{state}}{{/st.option}} 
+                                        {{#each states as |state|}}
+                                            {{#st.option value=state}}{{state}}{{/st.option}} 
                                         {{/each}} 
                                     {{/x-select}}
                                 </div>
