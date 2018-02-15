@@ -2,11 +2,11 @@
 	<div class="col-xs-12 col-md-6 voter-details-container">
 		<div>
 			<h2>Información Basica</h2>
-			<p>Nombre: {{voter.first_name}} {{voter.first_last_name}} {{voter.second_last_name}}</p>
+			<p>Nombre: {{voter.firstName}} {{voter.firstLastName}} {{voter.secondLastName}}</p>
 			<p>Sexo: {{voter.gender}}</p>
-			<p>Fecha Nacimiento: {{readable-date voter.date_of_birth}}</p>
+			<p>Fecha Nacimiento: {{readable-date voter.dateOfBirth}}</p>
 			<p>Estado: {{voter.state}}, {{voter.municipality}}</p>
-			<p>Id Electoral: {{voter.electoral_id_number}}</p>
+			<p>Id Electoral: {{voter.electoralIdNumber}}</p>
 			<p>CURP: {{voter.curp}}</p>
 		</div>
 	</div>
@@ -14,39 +14,39 @@
 	<div class="col-xs-12 col-md-6 voter-details-container">
 		<div>
 			<h2>Información Adicional</h2>
-			<p>Celular: {{voter.mobile_phone}}</p>
-			<p>Teléfono: {{if voter.mobile_phone voter.mobile_phone "N/A"}}</p>
+			<p>Celular: {{voter.mobilePhone}}</p>
+			<p>Teléfono: {{if voter.mobilePhone voter.mobilePhone "N/A"}}</p>
 			<p>Email: {{if voter.email voter.email "N/A"}}</p>
 
 			{{#if voter.street}}
 				<p>Dirección:</p>
 				<p class="address">Calle: {{voter.street}}</p>
 				<p class="address">Colonia: {{voter.suburb}} </p>
-				<p class="address">C.P: {{voter.postal_code}}</p>
+				<p class="address">C.P: {{voter.postalCode}}</p>
 				<p class="address">{{voter.state}}, {{voter.municipality}}</p>
-				<p>Pertenece al partido: <b>{{if voter.is_part_of_party "Sí" "No"}}</b></p>
+				<p>Pertenece al partido: <b>{{if voter.isPartOfParty "Sí" "No"}}</b></p>
 			{{/if}}
 		</div>
 	</div>
 
-	{{#if voter.is_part_of_party}}
+	{{#if voter.isPartOfParty}}
 		<div class="col-xs-12 col-md-6 voter-details-container">
 			<div>
 				<h2>Información de partido</h2>
 				<p>Organización: {{voter.organization}}</p>
-				<p>Cargos partidarios: {{voter.party_positions_held}}</p>
-				<p>Ha sido candidato: <b>{{if voter.has_been_candidate "Sí" "No"}}</b></p>
-				{{#if voter.has_been_candidate}}
-					<p><b>{{if voter.won_election "Ganó" "Perdió"}}</b> la elección.</p>
-					<p>Año de candidatura: {{voter.election_year}}</p>
-					<p>Posición: {{voter.popular_election_position}}</p>
-					<p>Vía de elección: {{voter.election_route}}</p>
+				<p>Cargos partidarios: {{voter.partyPositionsHeld}}</p>
+				<p>Ha sido candidato: <b>{{if voter.hasBeenCandidate "Sí" "No"}}</b></p>
+				{{#if voter.hasBeenCandidate}}
+					<p><b>{{if voter.wonElection "Ganó" "Perdió"}}</b> la elección.</p>
+					<p>Año de candidatura: {{voter.electionYear}}</p>
+					<p>Posición: {{voter.popular_electionPosition}}</p>
+					<p>Vía de elección: {{voter.electionRoute}}</p>
 				{{/if}}
 			</div>
 		</div>
 	{{/if}}
 	
-	<div class="col-xs-12 {{if voter.is_part_of_party "col-md-6"}} voter-details-container">
+	<div class="col-xs-12 {{if voter.isPartOfParty "col-md-6"}} voter-details-container">
 		<div>
 			<h2>Notas</h2>
 			<p>{{voter.notes}}</p>

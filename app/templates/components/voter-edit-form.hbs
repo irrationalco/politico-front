@@ -5,7 +5,7 @@
                 <h4 class="voter-edit-title">{{form-title}}</h4>
             </div>
             <div class="panel-body">
-                <form {{action (if voter.id 'update' 'create') voter on="submit" }} accept-charset="UTF-8" role="form" class="form-signin">
+                <form {{action 'save' voter on="submit" }} accept-charset="UTF-8" role="form" class="form-signin">
                     <fieldset id="voter-edit">
                         <div class="form-group row">
                             <div class="form-group row" style="margin-bottom:0">
@@ -14,15 +14,15 @@
                                 </div>
                                 <div class="col-md-8 col-md-offset-2">
                                     <label>Nombre</label>
-                                    {{input value=voter.first_name required=true pattern="[A-Za-zÀ-ÖÙ-Ýà-öù-ý\- \']+" title="Por favor no uses números ni símbolos exceptuando guiones y comillas simples" class="form-control voter-edit-field"}}
+                                    {{input value=voter.firstName required=true pattern="[A-Za-zÀ-ÖÙ-Ýà-öù-ý\- \']+" title="Por favor no uses números ni símbolos exceptuando guiones y comillas simples" class="form-control voter-edit-field"}}
                                 </div>
                                 <div class="col-md-8 col-md-offset-2">
                                     <label>Apellido Paterno</label>
-                                    {{input value=voter.first_last_name required=true pattern="[A-Za-zÀ-ÖÙ-Ýà-öù-ý\- \']+" title="Por favor no uses números ni símbolos exceptuando guiones y comillas simples" class="form-control voter-edit-field"}}
+                                    {{input value=voter.firstLastName required=true pattern="[A-Za-zÀ-ÖÙ-Ýà-öù-ý\- \']+" title="Por favor no uses números ni símbolos exceptuando guiones y comillas simples" class="form-control voter-edit-field"}}
                                 </div>
                                 <div class="col-md-8 col-md-offset-2">
                                     <label>Apellido Materno</label>
-                                    {{input value=voter.second_last_name required=true pattern="[A-Za-zÀ-ÖÙ-Ýà-öù-ý\- \']+" title="Por favor no uses números ni símbolos exceptuando guiones y comillas simples" class="form-control voter-edit-field"}}
+                                    {{input value=voter.secondLastName required=true pattern="[A-Za-zÀ-ÖÙ-Ýà-öù-ý\- \']+" title="Por favor no uses números ni símbolos exceptuando guiones y comillas simples" class="form-control voter-edit-field"}}
                                 </div>
                             </div>
                             <div class="form-group row" style="margin-bottom:0">
@@ -64,8 +64,8 @@
                                     <label>Estado</label>
                                     {{#x-select value=voter.state required=true class="form-control voter-edit-select" on-change=(action "updateState" voter) as |st|}}
                                         {{#st.option value='' disabled=true selected=true hidden=true}}Seleccionar{{/st.option}}
-                                        {{#each states as |state idx|}}
-                                            {{#st.option value=idx}}{{state}}{{/st.option}} 
+                                        {{#each states as |state|}}
+                                            {{#st.option value=state}}{{state}}{{/st.option}} 
                                         {{/each}} 
                                     {{/x-select}}
                                 </div>
@@ -95,15 +95,15 @@
                                 <div class="col-md-8 col-md-offset-2">
                                     <label>Código Postal <i class="text-muted">(Opcional)</i></label>
                                     <p class="form-text text-muted" style="margin-top:-3px; margin-bottom: 5px">* Ingresa 5 números</p>
-                                    {{input value=voter.postal_code type="number" min=1 minlength=5 maxlength=5 oninput="validity.valid||(value='');" class="form-control voter-edit-field"}}
+                                    {{input value=voter.postalCode type="number" min=1 minlength=5 maxlength=5 oninput="validity.valid||(value='');" class="form-control voter-edit-field"}}
                                 </div>
                                 <div class="col-md-4 col-md-offset-2">
                                     <label>Núm. Exterior <i class="text-muted">(Opcional)</i></label>
-                                    {{input value=voter.outside_number class="form-control voter-edit-field"}}
+                                    {{input value=voter.outsideNumber class="form-control voter-edit-field"}}
                                 </div>
                                 <div class="col-md-4 col-md-offset-0">
                                     <label>Núm. Interior <i class="text-muted">(Opcional)</i></label>
-                                    {{input value=voter.inside_number class="form-control voter-edit-field"}}
+                                    {{input value=voter.insideNumber class="form-control voter-edit-field"}}
                                 </div>
                             </div>
                         </div>
@@ -115,12 +115,12 @@
                                 <div class="col-md-8 col-md-offset-2">
                                     <label>Teléfono Fijo (Nacional) <i class="text-muted">(Opcional)</i></label>
                                     <p class="form-text text-muted" style="margin-top:-3px; margin-bottom: 5px">* Ingresa 8 - 12 números</p>
-                                    {{input value=voter.home_phone type="number" minlength=8 maxlength=12 oninput="validity.valid||(value='');" class="form-control voter-edit-field"}}
+                                    {{input value=voter.homePhone type="number" minlength=8 maxlength=12 oninput="validity.valid||(value='');" class="form-control voter-edit-field"}}
                                 </div>
                                 <div class="col-md-8 col-md-offset-2">
                                     <label>Teléfono Celular <i class="text-muted">(Opcional)</i></label>
                                     <p class="form-text text-muted" style="margin-top:-3px; margin-bottom: 5px">* Ingresa 10 números</p>
-                                    {{input value=voter.mobile_phone type="number" minlength=10 maxlength=10 oninput="validity.valid||(value='');" class="form-control voter-edit-field"}}
+                                    {{input value=voter.mobilePhone type="number" minlength=10 maxlength=10 oninput="validity.valid||(value='');" class="form-control voter-edit-field"}}
                                 </div>
                                 <div class="col-md-8 col-md-offset-2">
                                     <label>Correo Electrónico <i class="text-muted">(Opcional)</i></label>
@@ -135,7 +135,7 @@
                                 </div>
                                 <div class="col-md-8 col-md-offset-2">
                                     <label>URL Facebook <i class="text-muted">(Opcional)</i></label>
-                                    {{input value=voter.facebook_account class="form-control voter-edit-field"}}
+                                    {{input value=voter.facebookAccount class="form-control voter-edit-field"}}
                                 </div>
                             </div>
                         </div>
@@ -147,7 +147,7 @@
                                 <div class="col-md-8 col-md-offset-2">
                                     <label>Clave de Elector <i class="text-muted">(Opcional)</i></label>
                                     <p class="form-text text-muted" style="margin-top:-3px; margin-bottom: 5px">* Clave alfanumérica de 12 dígitos</p>
-                                    {{input value=voter.electoral_code class="form-control voter-edit-field"}}
+                                    {{input value=voter.electoralCode class="form-control voter-edit-field"}}
                                 </div>
                                 <div class="col-md-8 col-md-offset-2">
                                     <label>CURP <i class="text-muted">(Opcional)</i></label>
@@ -173,16 +173,16 @@
                                 <div class="col-md-8 col-md-offset-2">
                                     <label>Clave de Localidad <i class="text-muted">(Opcional)</i></label>
                                     <p class="form-text text-muted" style="margin-top:-3px; margin-bottom: 5px">* Ejemplo: <i>1234</i></p>
-                                    {{input value=voter.locality_code type="number" min=1 maxlength=4 oninput="validity.valid||(value='');"class="form-control voter-edit-field"}}
+                                    {{input value=voter.localityCode type="number" min=1 maxlength=4 oninput="validity.valid||(value='');"class="form-control voter-edit-field"}}
                                 </div>
                                 <div class="col-md-4 col-md-offset-2">
                                     <label>Emisión <i class="text-muted">(Opcional)</i></label>
                                     <!-- añadir -->
-                                    {{input value=voter.emision_date type="number" min=1917 max=2017 oninput="validity.valid||(value='');" class="form-control voter-edit-field"}}
+                                    {{input value=voter.emisionDate type="number" min=1917 max=2017 oninput="validity.valid||(value='');" class="form-control voter-edit-field"}}
                                 </div>
                                 <div class="col-md-4 col-md-offset-0">
                                     <label>Vigencia <i class="text-muted">(Opcional)</i></label>
-                                    {{#x-select value=voter.expiration_date class="form-control voter-edit-select" 
+                                    {{#x-select value=voter.expirationDate class="form-control voter-edit-select" 
                                     on-change=(action "updateExpirationDate" voter) as |expir|}} 
                                         {{#expir.option value='' disabled=true selected=true hidden=true}}{{/expir.option}}
                                         {{#each years as |year|}}
@@ -193,7 +193,7 @@
                                 <div class="col-md-8 col-md-offset-2">
                                     <label>Número de Credencial de Elector <i class="text-muted">(Opcional)</i></label>
                                     <p class="form-text text-muted" style="margin-top:-3px; margin-bottom: 5px">* Localizado al reverso de la Credencial de Elector</p>
-                                    {{input value=voter.electoral_id_number class="form-control voter-edit-field"}}
+                                    {{input value=voter.electoralIdNumber class="form-control voter-edit-field"}}
                                 </div>
                             </div>
                         </div>
@@ -204,7 +204,7 @@
                                 </div>
                                 <div class="col-md-8 col-md-offset-2">
                                     <label>Pertenece a Estructura <i class="text-muted">(Opcional)</i></label>
-                                    {{input type="checkbox" checked=voter.is_part_of_party class="form-control"}}
+                                    {{input type="checkbox" checked=voter.isPartOfParty class="form-control"}}
                                 </div>
                                 <div class="col-md-8 col-md-offset-2">
                                     <label>Organización <i class="text-muted">(Opcional)</i></label>
@@ -212,15 +212,15 @@
                                 </div>
                                 <div class="col-md-8 col-md-offset-2">
                                     <label>Cargos Partidarios <i class="text-muted">(Opcional)</i></label>
-                                    {{input value=voter.party_positions_held class="form-control voter-edit-field"}}
+                                    {{input value=voter.partyPositionsHeld class="form-control voter-edit-field"}}
                                 </div>
                                 <div class="col-md-8 col-md-offset-2">
                                     <label>Ha sido Candidato(a) <i class="text-muted">(Opcional)</i></label>
-                                    {{input type="checkbox" checked=voter.has_been_candidate class="form-control"}}
+                                    {{input type="checkbox" checked=voter.hasBeenCandidate class="form-control"}}
                                 </div>
                                 <div class="col-md-8 col-md-offset-2">
                                     <label>Año de Candidatura <i class="text-muted">(Opcional)</i></label>
-                                    {{input value=voter.election_year type="number" min=1900 oninput="validity.valid||(value='');" class="form-control voter-edit-field"}}
+                                    {{input value=voter.electionYear type="number" min=1900 oninput="validity.valid||(value='');" class="form-control voter-edit-field"}}
                                 </div>
                             </div>
                         </div>
@@ -231,7 +231,7 @@
                                 </div>
                                 <div class="col-md-8 col-md-offset-2">
                                     <label>Grado de Estudios <i class="text-muted">(Opcional)</i></label>
-                                    {{#x-select value=voter.highest_educational_level class="form-control voter-edit-select" on-change=(action "updateEducation" voter) as |hel|}}
+                                    {{#x-select value=voter.highestEducationalLevel class="form-control voter-edit-select" on-change=(action "updateEducation" voter) as |hel|}}
                                         {{#hel.option value='' disabled=true selected=true hidden=true}}Grado de Estudios{{/hel.option}}
                                         {{#hel.option value='PRIMARIA'}}PRIMARIA{{/hel.option}} 
                                         {{#hel.option value='SECUNDARIA'}}SECUNDARIA{{/hel.option}} 
@@ -242,7 +242,7 @@
                                 </div>
                                 <div class="col-md-8 col-md-offset-2">
                                     <label>Ocupación <i class="text-muted">(Opcional)</i></label>
-                                    {{#x-select value=voter.current_ocupation class="form-control voter-edit-select" on-change=(action "updateOcupation" voter) as |ocp|}} 
+                                    {{#x-select value=voter.currentOcupation class="form-control voter-edit-select" on-change=(action "updateOcupation" voter) as |ocp|}} 
                                         {{#ocp.option value='' disabled=true selected=true hidden=true}}Ocupación{{/ocp.option}}
                                         {{#ocp.option value='SECTOR PUBLICO'}}SECTOR PUBLICO{{/ocp.option}} 
                                         {{#ocp.option value='EMPRESA PROPIA'}}EMPRESA PROPIA{{/ocp.option}} 
