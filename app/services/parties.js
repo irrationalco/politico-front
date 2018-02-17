@@ -2,15 +2,15 @@ import Ember from 'ember';
 
 export default Ember.Service.extend({
 
-  colors: { PRI: "#4cff99", PAN: "#578eff", others: "#9a999a", 
-            PMOR: "#ff4d59", PRD: "#ffdb4e", PCONV: "#ffb97b",
-            PVEM: "#c6ff86", PT: "#ff756e", PMC: "#ff8e72", PES: "#a200ff",
-            PH: "#ffabdd", PNA: "#00a3cc", PSD: "#ff5653", PPM: "#4dceff", PSM:"#802926" },
+  colors: { pri: "#4cff99", pan: "#578eff", others: "#9a999a", 
+            pmor: "#ff4d59", prd: "#ffdb4e", pconv: "#ffb97b",
+            pvem: "#c6ff86", pt: "#ff756e", pmc: "#ff8e72", pes: "#a200ff",
+            ph: "#ffabdd", pna: "#00a3cc", psd: "#ff5653", ppm: "#4dceff", psm:"#802926" },
 
-  parties: ["PAN", "PCONV", "PES", "PH", "PMC", "PMOR", "PNA",
-            "PPM", "PRD", "PRI", "PSD", "PSM", "PT", "PVEM"],
+  parties: ["pan", "pconv", "pes", "ph", "pmc", "pmor", "pna",
+            "ppm", "prd", "pri", "psd", "psm", "pt", "pvem"],
 
-  selectedParties: ["PRI", "PAN", "PRD", "PMOR"],
+  selectedParties: ["pri", "pan", "prd", "pmor"],
 
   getMaxParty(parties, section) {
     let max = null;
