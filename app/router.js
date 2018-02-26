@@ -42,6 +42,7 @@ Router.map(function () {
     this.route('dashboard');
   });
 
+  this.route('forecasts', { path: '/forecasts'});
 });
 
 export default Router;
